@@ -10,69 +10,127 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Segoe UI', system-ui, sans-serif;
 }
 
 body {
   min-height: 100vh;
-  background: radial-gradient(circle at top, #1a1a1a, #000);
+  background: linear-gradient(
+    120deg,
+    #000000,
+    #0d0d0d,
+    #1a1200,
+    #000000
+  );
+  background-size: 400% 400%;
+  animation: bgFlow 18s ease infinite;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   color: #fff;
   overflow: hidden;
 }
 
+/* background animation */
+@keyframes bgFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 /* Card */
 .card {
-  background: linear-gradient(145deg, #0c0c0c, #111);
-  padding: 50px 40px;
-  border-radius: 22px;
-  text-align: center;
-  max-width: 420px;
-  width: 100%;
-  box-shadow:
-    0 0 80px rgba(255,180,50,0.15),
-    inset 0 0 40px rgba(255,200,80,0.05);
   position: relative;
+  background: rgba(10, 10, 10, 0.9);
+  padding: 52px 44px;
+  border-radius: 26px;
+  max-width: 440px;
+  width: 100%;
+  text-align: center;
+  box-shadow:
+    0 0 120px rgba(255,180,60,0.12),
+    inset 0 0 50px rgba(255,200,100,0.05);
+}
+
+/* subtle animated border glow */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 28px;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,180,80,0.6),
+    transparent
+  );
+  filter: blur(28px);
+  animation: borderGlow 6s ease-in-out infinite;
+  z-index: -1;
+}
+
+@keyframes borderGlow {
+  0% { opacity: .4; }
+  50% { opacity: .9; }
+  100% { opacity: .4; }
 }
 
 /* Title */
 h1 {
-  font-size: 2.2rem;
-  margin-bottom: 10px;
-  background: linear-gradient(90deg, #ffcc33, #ff9900, #ffd966);
+  font-size: 2.3rem;
+  margin-bottom: 12px;
+  background: linear-gradient(
+    90deg,
+    #ffdd88,
+    #ffb700,
+    #ff8844,
+    #ffdd88
+  );
+  background-size: 300% 300%;
+  animation: textGold 6s ease infinite;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
+@keyframes textGold {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 .subtitle {
-  color: #ccc;
-  margin-bottom: 30px;
+  color: #d0d0d0;
   font-size: 0.95rem;
+  margin-bottom: 34px;
+  line-height: 1.5;
 }
 
 /* Unlock Button */
 .unlock-btn {
   position: relative;
-  overflow: hidden;
-  margin-top: 30px;
-  padding: 18px 36px;
-  font-size: 1.1rem;
-  border: none;
+  padding: 18px 40px;
   border-radius: 999px;
+  border: none;
   cursor: pointer;
+  font-size: 1.1rem;
   font-weight: 800;
   color: #000;
-  background: linear-gradient(90deg, #ffcc33, #ff9900, #ffd966);
+  background: linear-gradient(
+    90deg,
+    #ffcc33,
+    #ff9900,
+    #ff4444,
+    #ffcc33
+  );
+  background-size: 400% 400%;
+  animation: buttonFlow 4s linear infinite;
   box-shadow:
-    0 0 30px rgba(255,190,50,0.8),
-    inset 0 0 12px rgba(255,255,255,0.35);
-  transition: transform 0.3s ease;
-  z-index: 1;
+    0 0 35px rgba(255,160,60,0.9),
+    inset 0 0 14px rgba(255,255,255,0.4);
+  overflow: hidden;
 }
 
-/* moving light */
+/* light sweep */
 .unlock-btn::before {
   content: "";
   position: absolute;
@@ -82,23 +140,22 @@ h1 {
   height: 220%;
   background: linear-gradient(
     120deg,
-    transparent 35%,
-    rgba(255,255,255,0.9) 50%,
-    transparent 65%
+    transparent 40%,
+    rgba(255,255,255,0.8) 50%,
+    transparent 60%
   );
-  animation: goldSweep 3s infinite linear;
-  z-index: 0;
+  animation: sweep 3.5s infinite;
 }
 
-/* glow */
-.unlock-btn::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  box-shadow: 0 0 45px rgba(255,215,120,0.9);
-  opacity: 0.85;
-  z-index: 0;
+/* animations */
+@keyframes buttonFlow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 400% 50%; }
+}
+
+@keyframes sweep {
+  0% { transform: translateX(-40%) rotate(0deg); }
+  100% { transform: translateX(40%) rotate(360deg); }
 }
 
 .unlock-btn span {
@@ -107,28 +164,7 @@ h1 {
 }
 
 .unlock-btn:hover {
-  transform: scale(1.08);
-}
-
-/* animation */
-@keyframes goldSweep {
-  0% {
-    transform: translateX(-50%) rotate(0deg);
-  }
-  100% {
-    transform: translateX(50%) rotate(360deg);
-  }
-}
-
-/* Footer glow */
-.card::after {
-  content: "";
-  position: absolute;
-  inset: -2px;
-  border-radius: 24px;
-  background: linear-gradient(120deg, transparent, rgba(255,200,80,0.3), transparent);
-  filter: blur(25px);
-  z-index: -1;
+  transform: scale(1.07);
 }
 </style>
 </head>
@@ -137,7 +173,10 @@ h1 {
 
 <div class="card">
   <h1>RealRax Script Hub</h1>
-  <p class="subtitle">Free & Premium Roblox Scripts<br>Complete the unlock to continue</p>
+  <p class="subtitle">
+    Free & Premium Roblox Scripts<br>
+    Complete the unlock to continue
+  </p>
 
   <button class="unlock-btn" onclick="unlock()">
     <span>🔓 Unlock Script</span>
@@ -146,8 +185,8 @@ h1 {
 
 <script>
 function unlock() {
-  // Linkvertise ของคุณ
-  window.location.href = "https://link-target.net/1407784/3OeGfKm41RE2";
+  window.location.href =
+    "https://link-target.net/1407784/3OeGfKm41RE2";
 }
 </script>
 
