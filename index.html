@@ -1,156 +1,160 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
 <meta charset="UTF-8">
 <title>RealRax Script Hub</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Segoe UI', system-ui, sans-serif;
+body{
+  margin:0;
+  background:radial-gradient(circle at top,#111,#000);
+  font-family:Segoe UI,sans-serif;
+  color:#fff;
 }
 
-body {
-  min-height: 100vh;
-  background: linear-gradient(
-    120deg,
-    #000000,
-    #0d0d0d,
-    #1a1200,
-    #000000
-  );
-  background-size: 400% 400%;
-  animation: bgFlow 18s ease infinite;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-  overflow: hidden;
+.center{
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
-@keyframes bgFlow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+.box{
+  background:#0b0b0b;
+  padding:50px;
+  border-radius:26px;
+  box-shadow:0 0 60px rgba(255,200,80,.25);
+  text-align:center;
 }
 
-/* Card */
-.card {
-  position: relative;
-  background: rgba(10, 10, 10, 0.9);
-  padding: 52px 44px;
-  border-radius: 26px;
-  max-width: 440px;
-  width: 100%;
-  text-align: center;
-  box-shadow:
-    0 0 120px rgba(255,180,60,0.12),
-    inset 0 0 50px rgba(255,200,100,0.05);
+h1{
+  font-size:2.4rem;
+  background:linear-gradient(90deg,#ffd700,#ff9f00,#ffd700);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
 }
 
-/* subtle border glow */
-.card::before {
-  content: "";
-  position: absolute;
-  inset: -2px;
-  border-radius: 28px;
-  background: linear-gradient(
-    120deg,
-    transparent,
-    rgba(255,180,80,0.4),
-    transparent
-  );
-  filter: blur(28px);
-  opacity: 0.6;
-  z-index: -1;
+button{
+  margin-top:30px;
+  padding:16px 46px;
+  border:none;
+  border-radius:999px;
+  font-size:1.1rem;
+  font-weight:800;
+  cursor:pointer;
+  background:linear-gradient(90deg,#ffcc33,#ff8800);
 }
 
-/* Title */
-h1 {
-  font-size: 2.3rem;
-  margin-bottom: 12px;
-  background: linear-gradient(
-    90deg,
-    #ffdd88,
-    #ffb700,
-    #ff8844,
-    #ffdd88
-  );
-  background-size: 300% 300%;
-  animation: textGold 6s ease infinite;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+/* ===== SCRIPT PAGE ===== */
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:60px 20px;
 }
 
-@keyframes textGold {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:26px;
 }
 
-.subtitle {
-  color: #d0d0d0;
-  font-size: 0.95rem;
-  margin-bottom: 34px;
-  line-height: 1.5;
+.card{
+  background:#0b0b0b;
+  border-radius:22px;
+  padding:22px;
+  box-shadow:0 0 30px rgba(255,180,60,.15);
 }
 
-/* Unlock Button */
-.unlock-btn {
-  padding: 18px 40px;
-  border-radius: 999px;
-  border: none;
-  cursor: pointer;
-  font-size: 1.1rem;
-  font-weight: 800;
-  color: #000;
-  background: linear-gradient(
-    90deg,
-    #ffcc33,
-    #ff9900,
-    #ff4444,
-    #ffcc33
-  );
-  background-size: 400% 400%;
-  animation: buttonFlow 5s linear infinite;
-  box-shadow:
-    0 0 35px rgba(255,160,60,0.9),
-    inset 0 0 14px rgba(255,255,255,0.35);
-  transition: transform 0.25s ease;
+.price{
+  font-size:2rem;
+  color:#ffd700;
+  font-weight:900;
 }
 
-@keyframes buttonFlow {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 400% 50%; }
+.scriptbox{
+  background:#050505;
+  border-radius:14px;
+  padding:14px;
+  margin-top:14px;
+  font-family:monospace;
+  font-size:.85rem;
+  word-break:break-all;
 }
 
-.unlock-btn:hover {
-  transform: scale(1.07);
+.copy{
+  margin-top:10px;
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:999px;
+  font-weight:800;
+  background:linear-gradient(90deg,#ffcc33,#ff8800);
+  cursor:pointer;
 }
 </style>
 </head>
 
 <body>
 
-<div class="card">
-  <h1>RealRax Script Hub</h1>
-  <p class="subtitle">
-    Free & Premium Roblox Scripts<br>
-    Complete the unlock to continue
-  </p>
+<div id="unlock" class="center">
+  <div class="box">
+    <h1>Unlock Script</h1>
+    <p>Complete Linkvertise to continue</p>
+    <button onclick="go()">🔓 Unlock</button>
+  </div>
+</div>
 
-  <button class="unlock-btn" onclick="unlock()">
-    🔓 Unlock Script
-  </button>
+<div id="content" style="display:none">
+  <div class="container">
+    <h1 style="text-align:center">🔥 RealRax Script Hub</h1>
+
+    <div class="grid">
+
+      <div class="card">
+        <h2>Banana Hub</h2>
+        <div class="price">149 ฿</div>
+        <div class="scriptbox" id="s1">
+loadstring(game:HttpGet("https://raw.githubusercontent.com/banana-hub/script/main.lua"))()
+        </div>
+        <button class="copy" onclick="copy('s1')">📋 Copy Script</button>
+      </div>
+
+      <div class="card">
+        <h2>Wave Hub</h2>
+        <div class="price">200 ฿</div>
+        <div class="scriptbox" id="s2">
+loadstring(game:HttpGet("https://raw.githubusercontent.com/wave-hub/script/main.lua"))()
+        </div>
+        <button class="copy" onclick="copy('s2')">📋 Copy Script</button>
+      </div>
+
+    </div>
+  </div>
 </div>
 
 <script>
-function unlock() {
-  window.location.href =
-    "https://link-target.net/1407784/3OeGfKm41RE2";
+const url = new URL(window.location.href);
+
+if(url.searchParams.get("unlock")==="1"){
+  localStorage.setItem("realrax_unlock","true");
+  history.replaceState(null,"","/");
+}
+
+if(localStorage.getItem("realrax_unlock")==="true"){
+  document.getElementById("unlock").style.display="none";
+  document.getElementById("content").style.display="block";
+}
+
+function go(){
+  window.location.href="https://link-target.net/1407784/3OeGfKm41RE2?o=sharing";
+}
+
+function copy(id){
+  navigator.clipboard.writeText(
+    document.getElementById(id).innerText
+  );
+  alert("คัดลอก Script แล้ว!");
 }
 </script>
 
